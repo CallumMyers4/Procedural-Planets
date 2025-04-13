@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    //references
     public Rigidbody playerRB;      //ref to player's RB
     
+    //movement vars
     private float moveSpeed = 4.0f;     //how quickly player moves around
-    private float attackCooldown, attackWaitTime = 0.3f;     //where the cooldown currently is, the time to wait between hits
+
+    //attacking vars
+    private float attackCooldown, attackWaitTime = 1.3f;     //where the cooldown currently is, the time to wait between hits
+    private bool attacking = false;
 
     //init base variables
     void Start()
@@ -45,10 +50,31 @@ public class PlayerMovementScript : MonoBehaviour
     //attack or destroy objects
     void Attack()
     {
-        //do stuffs
-        Debug.Log("Bonk!");
+        attacking = true;   //tell script player is attacking
+        attackCooldown = attackWaitTime;            //reset cooldown
 
-        //reset cooldown
-        attackCooldown = attackWaitTime;
+        StartCoroutine(EndAttack());    //reset attack vars
+    }
+
+    IEnumerator EndAttack()
+    {
+        yield return new WaitForSeconds(0.1f);  //give time to attack
+        attacking = false;
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        //if colliding with something that can be hit (so trees, rocks, etc.)
+        if (collision.gameObject.CompareTag("Hittable"))
+        {
+            //if player is currently trying to attack
+            if (attacking)
+            {
+                //do stuffs
+                Debug.Log("Bonk!"); 
+
+                collision.gameObject.GetComponent<ObjectManagerScript>().HP--;  //remove HP
+            }
+        }
     }
 }

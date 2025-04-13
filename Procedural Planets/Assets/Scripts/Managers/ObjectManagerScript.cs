@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ObjectManagerScript : MonoBehaviour
 {
-    public int HP;  //times getting hit before being destroyed
+    public int HP = 3;  //times getting hit before being destroyed
 
     [System.Serializable]
     public class Drops      //vars for each material drop
@@ -27,6 +27,25 @@ public class ObjectManagerScript : MonoBehaviour
     //destroy the object and drop the appropriate materials
     void DestroyAndDrop()
     {
+        //for each possible material in the list
+        for (int i = 0; i < dropList.Count; i++)
+        {
+            //decide how many to drop between the min and max possible
+            int spawnCount = Random.Range(dropList[i].min, dropList[i].max);
 
+            //spawn the appropriate number around the object
+            for (int j = 0; j < spawnCount; j++)
+            {
+                //get an X and Z offset from the object
+                int xOffset = Random.Range(-2, 2);
+                int zOffset = Random.Range(-1, 1);
+
+                Instantiate(dropList[i].prefab, new Vector3
+                                            (transform.position.x + xOffset, transform.position.y, transform.position.z + zOffset), 
+                            Quaternion.identity);
+            }
+        }
+
+        Destroy(gameObject);
     }
 }
