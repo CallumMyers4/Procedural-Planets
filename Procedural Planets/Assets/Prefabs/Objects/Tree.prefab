@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7676986571239655696}
   - component: {fileID: 5443772382991286508}
   - component: {fileID: 7881939790366090575}
+  - component: {fileID: 3134345274625058811}
   m_Layer: 0
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Hittable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,3 +106,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3134345274625058811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3145659751972687120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4b1a4e07293994e9cd09b1e15ecdd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  dropList:
+  - name: Wood
+    prefab: {fileID: 5539477118268497400, guid: d510971c00d86104a9707187428c5fb9, type: 3}
+    min: 1
+    max: 3

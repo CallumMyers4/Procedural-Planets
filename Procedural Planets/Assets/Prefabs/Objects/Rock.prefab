@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 466403986966783885}
   - component: {fileID: 6825881977327146188}
   - component: {fileID: 618547092510936221}
+  - component: {fileID: -539318990345193899}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Hittable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,3 +106,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-539318990345193899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891130117375232263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4b1a4e07293994e9cd09b1e15ecdd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  dropList:
+  - name: Stone
+    prefab: {fileID: 6288862324056976231, guid: 31a18c5b84b5f754abb94f3580422ec8, type: 3}
+    min: 1
+    max: 4
