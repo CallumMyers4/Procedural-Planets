@@ -6,7 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     // Struct to store data for each item within the inventory
     [System.Serializable]
-    private struct ItemInInventory
+    public struct ItemInInventory
     {
         public InventoryItem item; // the item
         public int stack;   //how many are being held
@@ -19,6 +19,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     private List<ItemInInventory> inventoryItems = new List<ItemInInventory>();     //list of what player has currently
+    [SerializeField]
+    private InventoryUIScript inventoryUI;  //reference to the inventory's UI
 
     //add a new item to the inventory
     public void AddToInventory(InventoryItem itemToAdd, int quantity)
@@ -33,11 +35,15 @@ public class InventoryManager : MonoBehaviour
                 var currentItem = inventoryItems[i];    //make a temp copy of the current position in the list
                 currentItem.stack += quantity;          //add the correct quantity to the stack
                 inventoryItems[i] = currentItem;        //replace with modified values
+
+                inventoryUI.RefreshUI(inventoryItems);  //update the UI
                 return;
             }
         }
 
         //if the item is not already there, or stack is full, then add a new stack
         inventoryItems.Add(new ItemInInventory(itemToAdd, quantity));
+
+        inventoryUI.RefreshUI(inventoryItems);  //update the UI
     }
 }
